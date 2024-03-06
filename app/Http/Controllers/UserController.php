@@ -25,10 +25,17 @@ class UserController extends Controller
 
     //Prak 6 (Akhir) 
         // tambah user dengan Eloquent Model
+        // $data = [
+        //     'nama' => 'Pelanggan Pertama',
+        // ];
+        // UserModel::where('username', 'customer-1')->update($data);//update data user
         $data = [
-            'nama' => 'Pelanggan Pertama',
+            'level_id' => 2,
+            'username' => 'manager_tiga',
+            'nama' => 'Manager 3',
+            'password' => Hash::make('12345')
         ];
-        UserModel::where('username', 'customer-1')->update($data);//update data user
+        UserModel::create($data);//update data user
         
         // coba akses model UserModel
         $user = UserModel::all();
