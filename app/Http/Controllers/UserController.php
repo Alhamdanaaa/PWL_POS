@@ -29,16 +29,27 @@ class UserController extends Controller
         //     'nama' => 'Pelanggan Pertama',
         // ];
         // UserModel::where('username', 'customer-1')->update($data);//update data user
-        $data = [
-            'level_id' => 2,
-            'username' => 'manager_tiga',
-            'nama' => 'Manager 3',
-            'password' => Hash::make('12345')
-        ];
-        UserModel::create($data);//update data user
+        // $data = [
+        //     'level_id' => 2,
+        //     'username' => 'manager_tiga',
+        //     'nama' => 'Manager 3',
+        //     'password' => Hash::make('12345')
+        // ];
+        // UserModel::create($data);//update data user
         
-        // coba akses model UserModel
-        $user = UserModel::all();
+        // // coba akses model UserModel
+        // $user = UserModel::all();
+        // return view('user', ['data' => $user]);
+        
+        // $user = UserModel::Find(1);
+        // return view('user', ['data' => $user]);
+        // $user = UserModel::where('level_id',1)->first();
+        // return view('user', ['data' => $user]);
+        // $user = UserModel::firstwhere('level_id',1);
+        // return view('user', ['data' => $user]);
+        $user = UserModel::findor(20,['username','nama'],function(){
+            abort(404);
+        });
         return view('user', ['data' => $user]);
     }
 }
