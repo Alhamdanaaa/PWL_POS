@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Form Ubah Data User</h1>
-    <a href="/user">Kembali</a>
+    <a href="/PWL_POS/public/user">Kembali</a>
     <br><br>
 
     <form action="post" action="/user/ubah_simpan/{{$data->user_id}}">
