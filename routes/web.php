@@ -4,6 +4,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/level', [LevelController::class, 'index']);
 Route::get('/kategori', [KategoriController::class, 'index']);
@@ -38,3 +39,5 @@ Route::get('/kategori/destroy/{id}', [KategoriController::class,'destroy']);
 // Route::resource('m_user', POSController::class);
 Route::resource('m_user',UserController::class);
 Route::resource('level',LevelController::class);
+
+Route::get('/',[WelcomeController::class,'index']);
