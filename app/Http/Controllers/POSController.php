@@ -2,37 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
-use App\Models\LevelModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class POSController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         //fungsi eloquent menampilkan data menggunakan pagination
         $useri = UserModel::all(); // Mengambil semua isi tabel
         return view('m_user.index', compact('useri'))->with('i');
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        $levels = LevelModel::all(); 
-        return view('m_user.create', compact('levels'));
+        return view('m_user.create');
     }
-    
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        // retrived the validated input data 
-        $validated = $request->validated();
-
-        // retrived a portion of the validated input data
-        $validated = $request->safe()->only(['username','nama','password']);
-        $validated = $request->safe()->except(['username','nama','password']);
+        //melakukan validasi data
+        $request->validate([
+            'user_id' => 'max 20',
+            'username' => 'required',
+            'nama' => 'required',
+        ]);
         
         //fungsi eloquent untuk menambah data
         UserModel::create($request->all());
@@ -58,6 +61,10 @@ class UserController extends Controller
         $useri = UserModel::find($id);
         return view('m_user.edit', compact('useri'));
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -67,7 +74,7 @@ class UserController extends Controller
             'password' => 'required',
             ]);
 
-        //fungsi eloquent untuk mengupdate data inputan 
+        //fungsi eloquent untuk mengupdate data inputan kita
         UserModel::find($id)->update($request->all());
         
         //jika data berhasil diupdate, akan kembali ke halaman utama
@@ -75,6 +82,10 @@ class UserController extends Controller
         ->with('success', 'Data Berhasil Diupdate');
 
     }
+
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
         $useri= UserModel::findOrFail($id)->delete();

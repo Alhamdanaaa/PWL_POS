@@ -1,26 +1,54 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-{{-- Customize layout sections --}}
+@section('title', 'Dashboard')
 
-@section('subtitle', 'Welcome')
-@section('content_header_title', 'Home')
-@section('content_header_subtitle', 'Welcome')
-
-{{-- Content body: main page content --}}
-
-@section('content_body')
-    <p>Welcome to this beautiful admin panel.</p>
+@section('content_header')
+    <h1>Dashboard</h1>
 @stop
 
-{{-- Push exttra CSS --}}
+@section('content')
+<div class="card card-warning">
+  <div class="card-header">
+    <h3 class="card-title">Tambah Data Level</h3>
+  </div>
+  <!-- /.card-header -->
+  <div class="card-body">
+    <form>
+      <div class="row">
+        <div class="col-sm-6">
+          <!-- text input -->
+          <div class="form-group">
+            {{-- m_user --}}
+            {{-- <label>Nama</label>
+            <input type="text" class="form-control" placeholder="Enter ...">
+            <label>Username</label>
+            <input type="text" class="form-control" placeholder="Enter ...">
+            <label>Password</label>
+            <input type="text" class="form-control" placeholder="Enter ...">
+            <label>Level</label>
+            <input type="text" class="form-control" placeholder="Enter ..."> --}}
+            {{-- m_level --}}
+            <label>Kode</label>
+            <input type="text" class="form-control" placeholder="Enter ...">
+            <label>Nama</label>
+            <input type="text" class="form-control" placeholder="Enter ...">
+          </div>
+          <button type="submit" class="btn btn-dark">Submit</button>
+        </div>
+        
+      </div>
+      
+    </form>
+  </div>
+  <!-- /.card-body -->
 
-@push('css')
-    {{-- Admin here extra stylesheets --}}
+@stop
+
+@section('css')
+    {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@endpush
+@stop
 
-{{-- Push extra scripts --}}
-
-@push('js')
-    <script>console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-@endpush
+@section('js')
+    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+@stop
