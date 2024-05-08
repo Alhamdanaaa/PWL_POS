@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,5 +24,11 @@ class PenjualanModel extends Model
     public function penjualan_detail(): HasMany
     {
         return $this->hasMany(PenjualanDetailModel::class, 'penjualan_id','penjualan_id');
+    }
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($image) =>url('/storage/posts/' . $image)
+        );
     }
 }
